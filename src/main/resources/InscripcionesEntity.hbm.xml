@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="org.example.models.InscripcionesEntity" table="inscripciones" schema="public" catalog="Progra">
+        <id name="idInscripcion">
+            <column name="id_inscripcion" sql-type="integer"/>
+            <generator class="identity"></generator>
+        </id>
+<!--        <property name="idEstudiante">-->
+<!--            <column name="id_estudiante" sql-type="integer" not-null="true"/>-->
+<!--        </property>-->
+<!--        <property name="idCurso">-->
+<!--            <column name="id_curso" sql-type="integer" not-null="true"/>-->
+<!--        </property>-->
+        <property name="fechaInscripcion">
+            <column name="fecha_inscripcion" sql-type="date"/>
+        </property>
+        <many-to-one name="estudiantes"
+                     class="org.example.models.EstudiantesEntity"
+                     column="id_estudiante"
+                     unique="true"
+                     not-null="true"
+                     />
+        <many-to-one name="cursos"
+                     class="org.example.models.CursosEntity"
+                     column="id_curso"
+                     not-null="true"
+        />
+    </class>
+</hibernate-mapping>
